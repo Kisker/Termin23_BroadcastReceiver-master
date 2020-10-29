@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rs.aleph.android.example23">
+
+    <!--
+    Posto zelimo da pozivamo servis samo kada smo povezani sa WIFI-jem
+    moramo dodati prava nasoj aplikaciji:
+        1) da moze da se poveze na internet
+        2) da moze da proveri trenutno stanje povezanosti na mrezu
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="rs.aleph.android.example23.activities.MainActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/activity_main_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="rs.aleph.android.example23.activities.SettingsActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/activity_settings_name"
+            android:parentActivityName="rs.aleph.android.example23.activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--
+        Moramo definisati punu putanju do naseg servis-a.
+        Ovo je obavezno, bez definicije servis-a necemo moci ni da ga koristimo.
+        -->
+        <service android:name="rs.aleph.android.example23.async.Service.SimpleService" />
+        <service android:name="rs.aleph.android.example23.async.Service.SimpleService2" />
+
+        <!--
+        Moramo definisati punu putanju do naseg receiver-a.
+        Ovo je obavezno, bez definicije receiver-a necemo moci ni da ga koristimo.
+        -->
+        <receiver android:name="rs.aleph.android.example23.async.BroadcastReceiver.SimpleReceiver" />
+        <receiver android:name="rs.aleph.android.example23.async.BroadcastReceiver.SimpleReceiver2" />
+
+    </application>
+
+</manifest>
